@@ -11,6 +11,18 @@ eval_path = "./evaluation"
 eval_temp = os.path.join(eval_path, "temp")
 eval_script = os.path.join(eval_path, "conlleval")
 
+def judge_type(itype):
+    if itype == "SIGNS":
+        return "症状和体征"
+    if itype == "CHECK":
+        return "检查和检验"
+    if itype == "DISEASE":
+        return "疾病和诊断"
+    if itype == "TREATMENT":
+        return "治疗"
+    if itype == "BODY":
+        return "身体部位"
+
 
 def get_logger(log_file):
     logger = logging.getLogger(log_file)
@@ -209,6 +221,25 @@ def result_to_json(string, tags):
         idx += 1
     return item
 
-
-
-
+def result_to_csv(string, tags):
+    ans = ""
+    entity_name = ""
+    entity_start = 0
+    idx = 0
+    for char, tag in zip(string, tags):
+        if tag[0] == "S":
+            ans += char + ' ' + str(idx) + ' ' + str(idx) + ' ' + judge_type(tag[2:]) + ';'
+        elif tag[0] == "B":
+            entity_name += char
+            entity_start = idx
+        elif tag[0] == "I":
+            entity_name += char
+        elif tag[0] == "E":
+            entity_name += char
+            ans += entity_name + ' ' + str(entity_start) + ' ' + str(idx) + ' ' + judge_type(tag[2:]) + ';'
+            entity_name = ""
+        else:
+            entity_name = ""
+            entity_start = idx
+        idx += 1
+    return ans

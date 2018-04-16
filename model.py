@@ -6,7 +6,7 @@ from tensorflow.contrib.crf import viterbi_decode
 from tensorflow.contrib.layers.python.layers import initializers
 
 import rnncell as rnn
-from utils import result_to_json
+from utils import result_to_json, result_to_csv
 from data_utils import create_input, iobes_iob
 
 
@@ -71,7 +71,7 @@ class Model(object):
                 self.opt = tf.train.GradientDescentOptimizer(self.lr)
             elif optimizer == "adam":
                 self.opt = tf.train.AdamOptimizer(self.lr)
-            elif optimizer == "adgrad":
+            elif optimizer == "adagrad":
                 self.opt = tf.train.AdagradOptimizer(self.lr)
             else:
                 raise KeyError
@@ -272,4 +272,4 @@ class Model(object):
         lengths, scores = self.run_step(sess, False, inputs)
         batch_paths = self.decode(scores, lengths, trans)
         tags = [id_to_tag[idx] for idx in batch_paths[0]]
-        return result_to_json(inputs[0][0], tags)
+        return result_to_csv(inputs[0][0], tags)
