@@ -42,6 +42,8 @@ model_checkpoint
 
 ## 主要代码
 
+### 训练相关文件
+
 `config_file` 模型的配置信息
 
 `maps.pkl` 词向量映射结果
@@ -50,7 +52,7 @@ model_checkpoint
 
 `wiki_100.utf8` 预训练好的 wiki 的词向量文件
  
-
+### 模型相关代码
 
 `conlleval.exe` `conlleval.py` 利用 conlleval + perl 对模型性能进行评估，在训练模型时使用
 
@@ -66,7 +68,7 @@ model_checkpoint
 
 `main.py` 主要的训练、测试、运行代码
 
-
+### 评估相关文件&代码
 
 `get_csv.py` 解析 `result/` 四个文件夹中运行结果的 txt 文件，整合输出 `result.csv`
 
