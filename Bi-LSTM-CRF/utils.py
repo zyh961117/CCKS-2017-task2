@@ -38,30 +38,6 @@ def get_logger(log_file):
     logger.addHandler(fh)
     return logger
 
-
-# def test_ner(results, path):
-#     """
-#     Run perl script to evaluate model
-#     """
-#     script_file = "conlleval"
-#     output_file = os.path.join(path, "ner_predict.utf8")
-#     result_file = os.path.join(path, "ner_result.utf8")
-#     with open(output_file, "w") as f:
-#         to_write = []
-#         for block in results:
-#             for line in block:
-#                 to_write.append(line + "\n")
-#             to_write.append("\n")
-#
-#         f.writelines(to_write)
-#     os.system("perl {} < {} > {}".format(script_file, output_file, result_file))
-#     eval_lines = []
-#     with open(result_file) as f:
-#         for line in f:
-#             eval_lines.append(line.strip())
-#     return eval_lines
-
-
 def test_ner(results, path):
     """
     Run perl script to evaluate model
