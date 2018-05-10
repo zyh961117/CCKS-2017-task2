@@ -1,0 +1,12 @@
+伤 O
+后 O
+疼 B-SIGNS
+痛 I-SIGNS
+、 O
+头 B-SIGNS
+晕 I-SIGNS
+3 O
+0 O
+分 O
+钟 O
+。 O

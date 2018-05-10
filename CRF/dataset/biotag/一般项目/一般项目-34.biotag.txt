@@ -1,0 +1,8 @@
+内 O
+疼 B-SIGNS
+痛 I-SIGNS
+4 O
+天 O
+入 O
+院 O
+。 O

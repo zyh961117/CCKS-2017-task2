@@ -160,6 +160,34 @@ class Model(object):
 
             return tf.reshape(pred, [-1, self.num_steps, self.num_tags])
 
+    # def loss_layer(self, project_logits, lengths, name=None):
+    # """
+    # calculate loss
+    # :param project_logits: [1, num_steps, num_tags]
+    # :return: scalar loss
+    # """
+    # with tf.variable_scope("loss"  if not name else name):
+    #     small = -1000.0
+    #     # pad logits for loss
+    #     start_logits = tf.concat(
+    #         [small * tf.ones(shape=[self.batch_size, 1, self.num_tags]), tf.zeros(shape=[self.batch_size, 1, 1])], axis=-1)
+    #     pad_logits = tf.cast(small * tf.ones([self.batch_size, self.num_steps, 1]), tf.float32)
+    #     logits = tf.concat([project_logits, pad_logits], axis=-1)
+    #     logits = tf.concat([start_logits, logits], axis=1)
+    #     targets = tf.concat(
+    #         [tf.cast(self.num_tags*tf.ones([self.batch_size, 1]), tf.int32), self.targets], axis=-1)
+
+    #     self.trans = tf.get_variable(
+    #         "transitions",
+    #         shape=[self.num_tags + 1, self.num_tags + 1],
+    #         initializer=self.initializer)
+    #     losses = tf.nn.sparse_softmax_cross_entropy_with_logits(
+    #         logits=logits,
+    #         labels=targets)
+    #     mask = tf.sequence_mask(lengths+1)
+    #     losses = tf.boolean_mask(losses, mask)
+    #     return tf.reduce_mean(losses)
+
     def loss_layer(self, project_logits, lengths, name=None):
         """
         calculate crf loss

@@ -1,0 +1,14 @@
+背 B-BODY
+部 I-BODY
+， O
+左 B-BODY
+胸 I-BODY
+部 I-BODY
+外 O
+伤 O
+1 O
+小 O
+时 O
+来 O
+院 O
+。 O

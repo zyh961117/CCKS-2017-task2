@@ -1,0 +1,8 @@
+右 B-BODY
+腕 I-BODY
+疼 B-SIGNS
+痛 I-SIGNS
+2 O
+小 O
+时 O
+。 O

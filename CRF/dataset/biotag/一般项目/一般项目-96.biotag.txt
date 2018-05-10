@@ -1,0 +1,5 @@
+疼 B-SIGNS
+痛 I-SIGNS
+3 O
+天 O
+。 O

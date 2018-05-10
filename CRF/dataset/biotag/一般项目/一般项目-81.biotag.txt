@@ -1,0 +1,12 @@
+痛 B-SIGNS
+伴 O
+会 B-BODY
+阴 I-BODY
+部 I-BODY
+胀 B-SIGNS
+痛 I-SIGNS
+不 O
+适 O
+1 O
+周 O
+。 O

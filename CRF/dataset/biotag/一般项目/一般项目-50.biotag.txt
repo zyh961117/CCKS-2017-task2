@@ -1,0 +1,15 @@
+1 O
+年 O
+， O
+发 O
+现 O
+膀 B-BODY
+胱 I-BODY
+结 O
+石 O
+2 O
+天 O
+收 O
+入 O
+院 O
+。 O

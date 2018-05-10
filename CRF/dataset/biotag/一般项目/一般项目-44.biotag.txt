@@ -1,0 +1,9 @@
+疼 B-SIGNS
+痛 I-SIGNS
+2 O
+小 O
+时 O
+收 O
+入 O
+院 O
+。 O

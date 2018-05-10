@@ -1,0 +1,14 @@
+左 B-BODY
+膝 I-BODY
+摔 O
+伤 O
+后 O
+疼 B-SIGNS
+痛 I-SIGNS
+约 O
+1 O
+小 O
+时 O
+入 O
+院 O
+。 O

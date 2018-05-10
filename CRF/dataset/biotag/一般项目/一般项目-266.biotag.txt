@@ -1,0 +1,11 @@
+， O
+主 O
+因 O
+肛 B-BODY
+门 I-BODY
+肿 B-SIGNS
+痛 I-SIGNS
+1 O
+天 O
+入 O
+院 O

@@ -1,0 +1,14 @@
+伴 O
+恶 B-SIGNS
+心 I-SIGNS
+、 O
+呕 B-SIGNS
+吐 I-SIGNS
+、 O
+腹 B-SIGNS
+泻 I-SIGNS
+1 O
+天 O
+入 O
+院 O
+。 O

@@ -1,0 +1,16 @@
+、 O
+上 B-BODY
+腹 I-BODY
+部 I-BODY
+、 O
+腰 B-BODY
+背 I-BODY
+部 I-BODY
+外 O
+伤 O
+1 O
+小 O
+时 O
+来 O
+院 O
+。 O

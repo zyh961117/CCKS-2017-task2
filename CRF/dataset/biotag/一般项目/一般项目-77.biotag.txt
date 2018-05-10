@@ -1,0 +1,16 @@
+出 B-SIGNS
+血 I-SIGNS
+、 O
+头 B-SIGNS
+痛 I-SIGNS
+头 B-SIGNS
+晕 I-SIGNS
+伴 O
+周 O
+身 O
+疼 B-SIGNS
+痛 I-SIGNS
+2 O
+小 O
+时 O
+。 O

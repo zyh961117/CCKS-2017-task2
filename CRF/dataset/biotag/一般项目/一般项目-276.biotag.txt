@@ -1,0 +1,15 @@
+伴 O
+左 B-BODY
+下 I-BODY
+肢 I-BODY
+麻 B-SIGNS
+木 I-SIGNS
+、 O
+疼 B-SIGNS
+痛 I-SIGNS
+跛 O
+行 O
+一 O
+个 O
+月 O
+。 O
