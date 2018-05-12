@@ -34,19 +34,12 @@ def create_mapping(dico):
     item_to_id = {v: k for k, v in id_to_item.items()}
     return item_to_id, id_to_item
 
-
+# 将字符串中的数字替换成 0 
 def zero_digits(s):
-    """
-    Replace every digit in a string by a zero.
-    """
     return re.sub('\d', '0', s)
 
-
+# 检测 IOB 格式
 def iob2(tags):
-    """
-    Check that tags have a valid IOB format.
-    Tags in IOB1 format are converted to IOB2.
-    """
     for i, tag in enumerate(tags):
         if tag == 'O':
             continue
@@ -63,11 +56,8 @@ def iob2(tags):
             tags[i] = 'B' + tag[1:]
     return True
 
-
+# IOB -> IOBES
 def iob_iobes(tags):
-    """
-    IOB -> IOBES
-    """
     new_tags = []
     for i, tag in enumerate(tags):
         if tag == 'O':
@@ -88,11 +78,8 @@ def iob_iobes(tags):
             raise Exception('Invalid IOB format!')
     return new_tags
 
-
+# IOBES -> IOB
 def iobes_iob(tags):
-    """
-    IOBES -> IOB
-    """
     new_tags = []
     for i, tag in enumerate(tags):
         if tag.split('-')[0] == 'B':
@@ -111,9 +98,6 @@ def iobes_iob(tags):
 
 
 def insert_singletons(words, singletons, p=0.5):
-    """
-    Replace singletons by the unknown word with a probability p.
-    """
     new_words = []
     for word in words:
         if word in singletons and np.random.uniform() < p:
@@ -122,13 +106,8 @@ def insert_singletons(words, singletons, p=0.5):
             new_words.append(word)
     return new_words
 
-
+# 使用 Jieba 分词
 def get_seg_features(string):
-    """
-    Segment text with jieba
-    features are represented in bies format
-    s donates single word
-    """
     seg_feature = []
 
     for word in jieba.cut(string):
@@ -143,10 +122,6 @@ def get_seg_features(string):
 
 
 def create_input(data):
-    """
-    Take sentence data and return an input for
-    the training or the evaluation function.
-    """
     inputs = list()
     inputs.append(data['chars'])
     inputs.append(data["segs"])
@@ -155,10 +130,6 @@ def create_input(data):
 
 
 def load_word2vec(emb_path, id_to_word, word_dim, old_weights):
-    """
-    Load word embedding from pre-trained file
-    embedding size must match
-    """
     new_weights = old_weights
     print('Loading pretrained embeddings from {}...'.format(emb_path))
     pre_trained = {}
@@ -205,9 +176,6 @@ def load_word2vec(emb_path, id_to_word, word_dim, old_weights):
 
 
 def full_to_half(s):
-    """
-    Convert full-width character to half-width one 
-    """
     n = []
     for char in s:
         num = ord(char)
@@ -221,9 +189,6 @@ def full_to_half(s):
 
 
 def cut_to_sentence(text):
-    """
-    Cut text to sentences 
-    """
     sentence = []
     sentences = []
     len_p = len(text)
@@ -263,10 +228,6 @@ def replace_html(s):
 
 
 def input_from_line(line, char_to_id):
-    """
-    Take sentence data and return an input for
-    the training or the evaluation function.
-    """
     line = full_to_half(line)
     line = replace_html(line)
     inputs = list()

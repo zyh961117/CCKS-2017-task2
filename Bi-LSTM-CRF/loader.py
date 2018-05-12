@@ -5,12 +5,8 @@ import codecs
 from data_utils import create_dico, create_mapping, zero_digits
 from data_utils import iob2, iob_iobes, get_seg_features
 
-
+# 加载句子，一行必须包含至少一个词和 tag ，句子以空行分割。
 def load_sentences(path, lower, zeros):
-    """
-    Load sentences. A line must contain at least a word and its tag.
-    Sentences are separated by empty lines.
-    """
     sentences = []
     sentence = []
     num = 0
@@ -37,12 +33,8 @@ def load_sentences(path, lower, zeros):
             sentences.append(sentence)
     return sentences
 
-
+# 检测 tag 标记是否合法
 def update_tag_scheme(sentences, tag_scheme):
-    """
-    Check and update sentences tagging scheme to IOB2.
-    Only IOB1 and IOB2 schemes are accepted.
-    """
     for i, s in enumerate(sentences):
         tags = [w[-1] for w in s]
         # Check that tags are given in the IOB format
@@ -61,11 +53,8 @@ def update_tag_scheme(sentences, tag_scheme):
         else:
             raise Exception('Unknown tagging scheme!')
 
-
+# 词映射
 def char_mapping(sentences, lower):
-    """
-    Create a dictionary and a mapping of words, sorted by frequency.
-    """
     chars = [[x[0].lower() if lower else x[0] for x in s] for s in sentences]
     dico = create_dico(chars)
     dico["<PAD>"] = 10000001
@@ -76,11 +65,8 @@ def char_mapping(sentences, lower):
     ))
     return dico, char_to_id, id_to_char
 
-
+# tag 映射
 def tag_mapping(sentences):
-    """
-    Create a dictionary and a mapping of tags, sorted by frequency.
-    """
     tags = [[char[-1] for char in s] for s in sentences]
     dico = create_dico(tags)
     tag_to_id, id_to_tag = create_mapping(dico)
@@ -90,12 +76,11 @@ def tag_mapping(sentences):
 
 def prepare_dataset(sentences, char_to_id, tag_to_id, lower=False, train=True):
     """
-    Prepare the dataset. Return a list of lists of dictionaries containing:
+    Return:
         - word indexes
         - word char indexes
         - tag indexes
     """
-
     none_index = tag_to_id["O"]
 
     def f(x):
@@ -114,14 +99,8 @@ def prepare_dataset(sentences, char_to_id, tag_to_id, lower=False, train=True):
 
     return data
 
-
+# 用预训练好的嵌入词来扩充词典
 def augment_with_pretrained(dictionary, ext_emb_path, chars):
-    """
-    Augment the dictionary with words that have a pretrained embedding.
-    If `words` is None, we add every word that has a pretrained embedding
-    to the dictionary, otherwise, we only add the words that are given by
-    `words` (typically the words in the development and test sets.)
-    """
     print('Loading pretrained embeddings from %s...' % ext_emb_path)
     assert os.path.isfile(ext_emb_path)
 
@@ -132,9 +111,6 @@ def augment_with_pretrained(dictionary, ext_emb_path, chars):
         if len(ext_emb_path) > 0
     ])
 
-    # We either add every word in the pretrained file,
-    # or only words given in the `words` list to which
-    # we can assign a pretrained embedding
     if chars is None:
         for char in pretrained:
             if char not in dictionary:
@@ -153,18 +129,12 @@ def augment_with_pretrained(dictionary, ext_emb_path, chars):
 
 
 def save_maps(save_path, *params):
-    """
-    Save mappings and invert mappings
-    """
     pass
     # with codecs.open(save_path, "w", encoding="utf8") as f:
     #     pickle.dump(params, f)
 
 
 def load_maps(save_path):
-    """
-    Load mappings from the file
-    """
     pass
     # with codecs.open(save_path, "r", encoding="utf8") as f:
     #     pickle.load(save_path, f)

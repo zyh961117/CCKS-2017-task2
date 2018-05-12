@@ -279,6 +279,7 @@ def selectText(event):
     entry.tag_add(SEL, "1.0", END)
     return 'break'
 
+# 展示系统 GUI
 def show_window():
     evaluate_line()
 

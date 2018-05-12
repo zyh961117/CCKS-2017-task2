@@ -38,10 +38,8 @@ def get_logger(log_file):
     logger.addHandler(fh)
     return logger
 
+# 用 perl 来评估模型
 def test_ner(results, path):
-    """
-    Run perl script to evaluate model
-    """
     output_file = os.path.join(path, "ner_predict.utf8")
     with open(output_file, "w") as f:
         to_write = []
@@ -56,17 +54,11 @@ def test_ner(results, path):
 
 
 def print_config(config, logger):
-    """
-    Print configuration of the model
-    """
     for k, v in config.items():
         logger.info("{}:\t{}".format(k.ljust(15), v))
 
 
 def make_path(params):
-    """
-    Make folders for training and evaluation
-    """
     if not os.path.isdir(params.result_path):
         os.makedirs(params.result_path)
     if not os.path.isdir(params.ckpt_path):
@@ -76,10 +68,6 @@ def make_path(params):
 
 
 def clean(params):
-    """
-    Clean current folder
-    remove saved model and training log
-    """
     if os.path.isfile(params.vocab_file):
         os.remove(params.vocab_file)
 
@@ -109,27 +97,16 @@ def clean(params):
 
 
 def save_config(config, config_file):
-    """
-    Save configuration of the model
-    parameters are stored in json format
-    """
     with open(config_file, "w", encoding="utf8") as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
 
 
 def load_config(config_file):
-    """
-    Load configuration of the model
-    parameters are stored in json format
-    """
     with open(config_file, encoding="utf8") as f:
         return json.load(f)
 
-
+# 将 conlleval 数据转化为 text
 def convert_to_text(line):
-    """
-    Convert conll data to text
-    """
     to_print = []
     for item in line:
 
@@ -156,7 +133,6 @@ def save_model(sess, model, path, logger):
 
 
 def create_model(session, Model_class, path, load_vec, config, id_to_char, logger):
-    # create model, reuse parameters if exists
     model = Model_class(config)
 
     ckpt = tf.train.get_checkpoint_state(path)

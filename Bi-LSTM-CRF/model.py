@@ -112,8 +112,8 @@ class Model(object):
 
     def biLSTM_layer(self, lstm_inputs, lstm_dim, lengths, name=None):
         """
-        :param lstm_inputs: [batch_size, num_steps, emb_size] 
-        :return: [batch_size, num_steps, 2*lstm_dim] 
+        @param lstm_inputs: [batch_size, num_steps, emb_size] 
+        @return: [batch_size, num_steps, 2*lstm_dim] 
         """
         with tf.variable_scope("char_BiLSTM" if not name else name):
             lstm_cell = {}
@@ -135,8 +135,8 @@ class Model(object):
     def project_layer(self, lstm_outputs, name=None):
         """
         hidden layer between lstm layer and logits
-        :param lstm_outputs: [batch_size, num_steps, emb_size] 
-        :return: [batch_size, num_steps, num_tags]
+        @param lstm_outputs: [batch_size, num_steps, emb_size] 
+        @return: [batch_size, num_steps, num_tags]
         """
         with tf.variable_scope("project"  if not name else name):
             with tf.variable_scope("hidden"):
@@ -163,8 +163,8 @@ class Model(object):
     # def loss_layer(self, project_logits, lengths, name=None):
     # """
     # calculate loss
-    # :param project_logits: [1, num_steps, num_tags]
-    # :return: scalar loss
+    # @param project_logits: [1, num_steps, num_tags]
+    # @return: scalar loss
     # """
     # with tf.variable_scope("loss"  if not name else name):
     #     small = -1000.0
@@ -191,8 +191,8 @@ class Model(object):
     def loss_layer(self, project_logits, lengths, name=None):
         """
         calculate crf loss
-        :param project_logits: [1, num_steps, num_tags]
-        :return: scalar loss
+        @param project_logits: [1, num_steps, num_tags]
+        @return: scalar loss
         """
         with tf.variable_scope("crf_loss"  if not name else name):
             small = -1000.0
@@ -218,9 +218,9 @@ class Model(object):
 
     def create_feed_dict(self, is_train, batch):
         """
-        :param is_train: Flag, True for train batch
-        :param batch: list train/evaluate data 
-        :return: structured data to feed
+        @param is_train: Flag, True for train batch
+        @param batch: list train/evaluate data 
+        @return: structured data to feed
         """
         _, chars, segs, tags = batch
         feed_dict = {
@@ -235,10 +235,10 @@ class Model(object):
 
     def run_step(self, sess, is_train, batch):
         """
-        :param sess: session to run the batch
-        :param is_train: a flag indicate if it is a train batch
-        :param batch: a dict containing batch data
-        :return: batch result, loss of the batch or logits
+        @param sess: session to run the batch
+        @param is_train: a flag indicate if it is a train batch
+        @param batch: a dict containing batch data
+        @return: batch result, loss of the batch or logits
         """
         feed_dict = self.create_feed_dict(is_train, batch)
         if is_train:
@@ -252,10 +252,10 @@ class Model(object):
 
     def decode(self, logits, lengths, matrix):
         """
-        :param logits: [batch_size, num_steps, num_tags]float32, logits
-        :param lengths: [batch_size]int32, real length of each sequence
-        :param matrix: transaction matrix for inference
-        :return:
+        @param logits: [batch_size, num_steps, num_tags]float32, logits
+        @param lengths: [batch_size]int32, real length of each sequence
+        @param matrix: transaction matrix for inference
+        @return: path
         """
         # inference final labels usa viterbi Algorithm
         paths = []
@@ -273,10 +273,10 @@ class Model(object):
 
     def evaluate(self, sess, data_manager, id_to_tag):
         """
-        :param sess: session  to run the model 
-        :param data: list of data
-        :param id_to_tag: index to tag name
-        :return: evaluate result
+        @param sess: session  to run the model 
+        @param data: list of data
+        @param id_to_tag: index to tag name
+        @return: evaluate result
         """
         results = []
         trans = self.trans.eval()
